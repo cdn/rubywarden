@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=bitwarden
+User=_rubywarden
 WorkingDirectory=/home/bitwarden/rubywarden
 Environment="GEM_HOME=/home/bitwarden/.rvm/gems/ruby-2.3.8"
 Environment="GEM_PATH=$GEM_HOME:$GEM_HOME@global"
