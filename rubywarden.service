@@ -1,0 +1,20 @@
+[Unit]
+Description=rubywarden
+After=network.target
+
+[Service]
+Type=simple
+User=_rubywarden
+WorkingDirectory=/home/bitwarden/rubywarden
+Environment="GEM_HOME=/home/bitwarden/.rvm/gems/ruby-2.3.8"
+Environment="GEM_PATH=$GEM_HOME:$GEM_HOME@global"
+Environment="PATH=$GEM_HOME/bin:$GEM_HOME@global/bin:/home/bitwarden/.rvm/rubies/ruby-2.3.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/bitwarden/.rvm/bin"
+Environment="RUBYWARDEN_ENV=production"
+ExecStart=/home/bitwarden/.rvm/bin/rvm all do bundle exec rackup -p 4567 config.ru
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+#ExecStop=/bin/kill -9 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
